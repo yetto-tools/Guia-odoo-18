@@ -6,6 +6,8 @@
 ## Objetivo del día
 Aislar las propiedades por compañía, y entender cómo Odoo modela múltiples empresas en una sola base de datos.
 
+![El selector de compañías con dos empresas habilitadas](imagenes/dia-24-selector-companias.jpg)
+
 ---
 
 ## Conceptos de Odoo
