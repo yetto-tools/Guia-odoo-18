@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/OCA/odoo-pre-commit-hooks
+    rev: v0.0.33
+    hooks:
+      - id: oca-checks-odoo-module
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix]
