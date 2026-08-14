@@ -1,0 +1,30 @@
+<odoo>
+    <record id="module_category_inmueble" model="ir.module.category">
+        <field name="name">Inmobiliaria</field>
+    </record>
+
+    <record id="group_inmueble_agent" model="res.groups">
+        <field name="name">Agente Inmobiliario</field>
+        <field name="category_id" ref="module_category_inmueble"/>
+    </record>
+
+    <record id="group_inmueble_manager" model="res.groups">
+        <field name="name">Gerente Inmobiliario</field>
+        <field name="category_id" ref="module_category_inmueble"/>
+        <field name="implied_ids" eval="[(4, ref('group_inmueble_agent'))]"/>
+    </record>
+
+    <record id="rule_inmueble_property_agent" model="ir.rule">
+        <field name="name">Agente ve solo sus propiedades</field>
+        <field name="model_id" ref="model_inmueble_property"/>
+        <field name="domain_force">[('salesperson_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_inmueble_agent'))]"/>
+    </record>
+
+    <record id="rule_inmueble_property_manager" model="ir.rule">
+        <field name="name">Gerente ve todas las propiedades</field>
+        <field name="model_id" ref="model_inmueble_property"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_inmueble_manager'))]"/>
+    </record>
+</odoo>
