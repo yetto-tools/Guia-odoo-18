@@ -6,6 +6,8 @@
 ## Objetivo del día
 Que un agente solo vea sus propias propiedades, y un gerente las vea todas.
 
+![Los grupos Agente Inmobiliario y Gerente Inmobiliario](imagenes/dia-06-grupos.jpg)
+
 ---
 
 ## Conceptos de Odoo
