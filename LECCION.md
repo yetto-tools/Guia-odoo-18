@@ -6,6 +6,8 @@
 ## Objetivo del día
 Agregar un campo calculado: superficie total, y entender a fondo el costo/beneficio de `store`.
 
+![Campo Superficie total calculado en el formulario](imagenes/dia-08-total-area.jpg)
+
 ---
 
 ## Conceptos de Odoo
