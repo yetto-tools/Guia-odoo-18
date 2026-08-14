@@ -6,6 +6,8 @@
 ## Objetivo del día
 Escribir tests automáticos para las reglas de negocio del módulo, y entender qué garantizan realmente.
 
+![Corrida de tests: 0 failed, 0 error(s)](imagenes/dia-22-tests.jpg)
+
 ---
 
 ## Conceptos de Odoo
