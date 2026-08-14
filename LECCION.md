@@ -6,6 +6,8 @@
 ## Objetivo del día
 Consolidar lo construido en los días 1 a 6, sin agregar temas nuevos, y confirmar que realmente entendiste — no solo que copiaste el código.
 
+![Grupos de seguridad configurados al cierre de la semana 1](imagenes/dia-07-repaso.jpg)
+
 ---
 
 ## Tareas de pulido
