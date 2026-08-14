@@ -1,0 +1,26 @@
+<odoo>
+    <template id="properties_list" name="Propiedades disponibles">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1>Propiedades disponibles</h1>
+                <div t-foreach="properties" t-as="prop" class="mb-3">
+                    <a t-attf-href="/propiedades/#{prop.id}">
+                        <strong t-out="prop.name"/>
+                    </a>
+                    — <t t-out="prop.expected_price"/>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="property_detail" name="Detalle de propiedad">
+        <t t-call="website.layout">
+            <div class="container">
+                <h1 t-out="property.name"/>
+                <p t-out="property.description"/>
+                <p>Precio esperado: <t t-out="property.expected_price"/></p>
+                <p>Superficie total: <t t-out="property.total_area"/> m²</p>
+            </div>
+        </t>
+    </template>
+</odoo>

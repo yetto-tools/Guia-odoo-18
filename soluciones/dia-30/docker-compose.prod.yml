@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: postgres
+    volumes:
+      - odoo-db:/var/lib/postgresql/data
+
+  odoo:
+    image: odoo:18
+    depends_on:
+      - db
+    volumes:
+      - odoo-addons:/mnt/extra-addons
+      - odoo-filestore:/var/lib/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf
+    command: ["odoo", "-c", "/etc/odoo/odoo.conf"]
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - odoo
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  odoo-db:
+  odoo-addons:
+  odoo-filestore:

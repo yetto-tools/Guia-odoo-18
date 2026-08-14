@@ -1,0 +1,38 @@
+<odoo>
+    <template id="report_inmueble_property_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2><t t-out="doc.name"/></h2>
+                    <p>Precio esperado: <t t-out="doc.expected_price"/></p>
+                    <p>Superficie total: <t t-out="doc.total_area"/> m²</p>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Comprador</th>
+                                <th>Precio ofrecido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.offer_ids.sorted(key=lambda o: o.price, reverse=True)" t-as="offer">
+                                <tr>
+                                    <td><t t-out="offer.partner_id.name"/></td>
+                                    <td><t t-out="offer.price"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_inmueble_property" model="ir.actions.report">
+        <field name="name">Ficha de propiedad</field>
+        <field name="model">inmueble.property</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion_inmobiliaria.report_inmueble_property_document</field>
+        <field name="binding_model_id" ref="model_inmueble_property"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

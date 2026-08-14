@@ -1,0 +1,45 @@
+# Configuración y estado local de agentes/asistentes de IA — no se versiona.
+# Cada uno guarda acá credenciales, historial de sesión o preferencias
+# específicas de la máquina del desarrollador, no del proyecto.
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Cursor
+.cursor/
+.cursorrules
+.cursorignore
+
+# OpenAI Codex CLI
+.codex/
+
+# Gemini CLI
+.gemini/
+GEMINI.md
+
+# GitHub Copilot
+.github/copilot-instructions.md
+
+# Windsurf (Codeium)
+.windsurf/
+.windsurfrules
+
+# Aider
+.aider/
+.aider.tags.cache*
+.aider.chat.history.md
+.aider.input.history
+
+# Continue.dev
+.continue/
+
+# Amazon Q Developer
+.amazonq/
+
+# Zed AI
+.zed/
+
+# Model Context Protocol (config con posibles credenciales/tokens)
+.mcp.json
+mcp.json

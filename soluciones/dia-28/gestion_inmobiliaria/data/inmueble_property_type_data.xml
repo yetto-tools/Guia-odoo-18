@@ -1,0 +1,11 @@
+<odoo noupdate="1">
+    <record id="property_type_house" model="inmueble.property.type">
+        <field name="name">Casa</field>
+    </record>
+    <record id="property_type_apartment" model="inmueble.property.type">
+        <field name="name">Departamento</field>
+    </record>
+    <record id="property_type_land" model="inmueble.property.type">
+        <field name="name">Terreno</field>
+    </record>
+</odoo>

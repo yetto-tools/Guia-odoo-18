@@ -1,0 +1,5 @@
+<templates xml:space="preserve">
+    <t t-name="gestion_inmobiliaria.StateBadge">
+        <span t-att-class="badgeClass" t-esc="props.record.data[props.name]"/>
+    </t>
+</templates>
