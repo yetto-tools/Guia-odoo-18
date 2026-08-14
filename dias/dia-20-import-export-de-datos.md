@@ -6,6 +6,8 @@
 ## Objetivo del día
 Cargar datos iniciales del módulo vía XML, y entender la portabilidad real entre bases de datos.
 
+![Los 3 tipos de propiedad precargados por el data file](imagenes/dia-20-tipos-precargados.jpg)
+
 ---
 
 ## Conceptos de Odoo

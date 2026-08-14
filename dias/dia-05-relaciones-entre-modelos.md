@@ -6,6 +6,8 @@
 ## Objetivo del día
 Agregar tipo, etiquetas, comprador y agente a la propiedad.
 
+![Formulario con tipo, etiquetas, comprador y agente](imagenes/dia-05-form-relaciones.jpg)
+
 ---
 
 ## Conceptos de Odoo

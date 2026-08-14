@@ -6,6 +6,8 @@
 ## Objetivo del día
 Crear el esqueleto del módulo `gestion_inmobiliaria` e instalarlo, vacío pero funcional.
 
+![El módulo instalado, visible en Apps](imagenes/dia-02-apps-instalada.jpg)
+
 ---
 
 ## Conceptos de Odoo

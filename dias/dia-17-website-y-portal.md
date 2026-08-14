@@ -6,6 +6,8 @@
 ## Objetivo del día
 Publicar una página pública que liste propiedades disponibles, y entender los niveles de autenticación de un controlador.
 
+![La página pública /propiedades](imagenes/dia-17-website-publico.jpg)
+
 ---
 
 ## Conceptos de Odoo

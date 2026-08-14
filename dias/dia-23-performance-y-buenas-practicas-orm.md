@@ -6,6 +6,8 @@
 ## Objetivo del día
 Detectar y corregir patrones de consulta ineficientes, y entender el prefetch del ORM a fondo.
 
+![El método de performance corregido, ejecutado en shell](imagenes/dia-23-performance.jpg)
+
 ---
 
 ## Conceptos de Odoo

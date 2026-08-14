@@ -6,6 +6,8 @@
 ## Objetivo del día
 Cerrar el flujo completo de estados de una propiedad, y consolidar toda la semana 2.
 
+![Statusbar con la propiedad en Oferta aceptada](imagenes/dia-14-statusbar.jpg)
+
 ---
 
 ## Conceptos de Odoo

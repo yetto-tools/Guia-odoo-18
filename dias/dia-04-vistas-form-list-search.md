@@ -6,6 +6,8 @@
 ## Objetivo del día
 Tener un CRUD completo de `inmueble.property` funcionando desde la interfaz web.
 
+![Vista lista de propiedades](imagenes/dia-04-lista-propiedades.jpg)
+
 ---
 
 ## Conceptos de Odoo

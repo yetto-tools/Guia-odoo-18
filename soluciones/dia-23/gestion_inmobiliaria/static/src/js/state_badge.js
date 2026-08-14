@@ -17,6 +17,13 @@ export class StateBadge extends Component {
     get badgeClass() {
         return `badge text-bg-${COLORS[this.props.record.data[this.props.name]] || "secondary"}`;
     }
+
+    get label() {
+        const value = this.props.record.data[this.props.name];
+        const selection = this.props.record.fields[this.props.name].selection || [];
+        const match = selection.find(([selectionValue]) => selectionValue === value);
+        return match ? match[1] : value;
+    }
 }
 
 registry.category("fields").add("state_badge", { component: StateBadge });

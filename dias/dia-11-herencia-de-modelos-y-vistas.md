@@ -6,6 +6,8 @@
 ## Objetivo del día
 Extender `res.partner` para mostrar las propiedades compradas por ese contacto, y entender las tres formas de herencia de Odoo.
 
+![Smart button de Propiedades en el formulario de contacto](imagenes/dia-11-smart-button.jpg)
+
 ---
 
 ## Conceptos de Odoo

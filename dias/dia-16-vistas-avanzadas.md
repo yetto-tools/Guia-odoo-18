@@ -6,6 +6,8 @@
 ## Objetivo del día
 Agregar una vista Kanban de propiedades agrupada por estado, y explorar Graph/Pivot.
 
+![Vista Kanban agrupada por estado](imagenes/dia-16-kanban.jpg)
+
 ---
 
 ## Conceptos de Odoo

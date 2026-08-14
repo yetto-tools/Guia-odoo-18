@@ -6,6 +6,8 @@
 ## Objetivo del día
 Escribir un script de migración post-actualización, y entender por qué hace falta un mecanismo separado del código normal del módulo.
 
+![El script de migración corriendo al actualizar el módulo](imagenes/dia-25-migracion.jpg)
+
 ---
 
 ## Conceptos de Odoo

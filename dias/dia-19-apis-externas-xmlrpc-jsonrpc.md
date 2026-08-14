@@ -6,6 +6,8 @@
 ## Objetivo del día
 Crear una propiedad desde un script Python externo a Odoo, y entender las alternativas de integración.
 
+![El error real de XML-RPC al devolver un recordset, y la versión corregida](imagenes/dia-19-xmlrpc-error.jpg)
+
 ---
 
 ## Conceptos de Odoo
@@ -57,9 +59,24 @@ Corré el script contra tu instancia local, verificá en la UI.
 2. Llamá `execute_kw` con método `"search"` y dominio vacío `[[]]` sobre `inmueble.property` — confirmá que solo trae las propiedades de ese agente, igual que en la UI.
 3. Intentá `create` de una propiedad con `salesperson_id` de **otro** agente, si el ACL/record rule lo permite o lo bloquea — confirmá el comportamiento y explicá por qué.
 
-### Ejercicio 3 — Llamar a un método propio, no solo CRUD genérico
+### Ejercicio 3 — Llamar a un método propio, y descubrir por qué falla
 1. Usá el script para invocar el método `get_available_properties` que escribiste el día 10, vía `execute_kw` con `metodo="get_available_properties"` y `args=[[]]`.
-2. Confirmá que devuelve los mismos resultados que verías llamándolo desde `odoo shell`.
+2. Vas a obtener un error, no el resultado. Algo así:
+   ```
+   TypeError: cannot marshal <class 'odoo.api.inmueble.property'> objects
+   ```
+3. Leélo con calma: **no es un bug de tu módulo**, es un límite real del protocolo. `get_available_properties` devuelve un *recordset* — un objeto Python interno de Odoo que solo tiene sentido dentro del proceso del servidor. XML-RPC (y JSON-RPC) solo pueden transportar tipos serializables: números, strings, listas, diccionarios, booleanos. Un recordset no es nada de eso.
+4. Arreglalo devolviendo datos, no objetos:
+   ```python
+   def get_available_properties_data(self):
+       return [
+           {"id": p.id, "name": p.name, "expected_price": p.expected_price}
+           for p in self.get_available_properties()
+       ]
+   ```
+5. Llamá a este método nuevo por XML-RPC y confirmá que ahora sí funciona.
+
+> Este es el mismo problema, visto desde otro ángulo, que ya resolviste en `estate.property.offer` o en cualquier endpoint `type="json"`: todo lo que cruza la frontera del proceso de Odoo hacia afuera tiene que ser serializable. Adentro del servidor (vistas, `odoo shell`, otro método Python) un recordset es perfecto. Afuera, no existe — tenés que traducirlo vos.
 
 ### Ejercicio 4 — Generar y usar una API Key
 1. Desde `Ajustes de la cuenta → Seguridad de la cuenta`, generá una API Key para tu usuario admin.
@@ -85,6 +102,7 @@ Probalo con una herramienta como `curl` o `requests`, armando el sobre JSON-RPC 
 3. ¿Qué ventaja tiene una API Key sobre usar la contraseña real del usuario en una integración externa?
 4. ¿Podés invocar, vía `execute_kw`, un método propio que vos definiste en tu modelo (no solo `create`/`write`/`search`)?
 5. ¿Qué control adicional ganás al exponer tu propio endpoint `type="json"` frente a usar XML-RPC genérico?
+6. ¿Por qué un método que devuelve un recordset funciona perfecto llamado desde `odoo shell`, pero falla llamado vía XML-RPC?
 
 <details>
 <summary>Ver respuestas</summary>
@@ -94,11 +112,13 @@ Probalo con una herramienta como `curl` o `requests`, armando el sobre JSON-RPC 
 3. Podés revocarla sin cambiar la contraseña real del usuario, y no exponés esa contraseña real en scripts o integraciones de terceros que podrían filtrarse.
 4. Sí — `execute_kw` es genérico respecto al nombre del método; podés invocar cualquier método público de tu modelo, no solo las operaciones CRUD estándar.
 5. Control total sobre la forma exacta de la respuesta (qué campos exponer, qué lógica de negocio aplicar antes de responder) — con XML-RPC genérico heredás el comportamiento estándar de `create`/`search`/etc., sin poder moldear la respuesta a tu medida.
+6. Porque `odoo shell` corre **dentro** del mismo proceso Python que el ORM — un recordset ahí es un objeto normal que podés imprimir o inspeccionar. XML-RPC cruza la frontera del proceso: el resultado tiene que viajar por la red como XML, y solo sabe serializar tipos simples (números, strings, listas, diccionarios). Un recordset no es serializable, así que hay que convertirlo vos mismo antes de devolverlo.
 
 </details>
 
 ## Checklist de cierre
 - [ ] Puedo explicar la firma completa de `execute_kw`.
 - [ ] Confirmé que la seguridad del día 6 aplica igual vía XML-RPC.
+- [ ] Reproduje el error `cannot marshal` y entiendo por qué pasa.
 - [ ] Generé y usé una API Key en vez de una contraseña real.
 - [ ] Probé la integración desde un proceso realmente externo a Odoo, no desde `odoo shell`.

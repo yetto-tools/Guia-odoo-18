@@ -6,6 +6,8 @@
 ## Objetivo del día
 Consolidar reporte PDF, Kanban, portal público y endpoint externo funcionando juntos, y confirmar que entendés el "por qué" de cada pieza.
 
+![Vista Kanban al cierre de la semana 3](imagenes/dia-21-repaso.jpg)
+
 ---
 
 ## Tareas de consolidación

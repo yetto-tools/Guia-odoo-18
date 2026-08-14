@@ -6,6 +6,8 @@
 ## Objetivo del día
 Poner linters específicos de Odoo a correr automáticamente antes de cada commit, y entender por qué un linter genérico no alcanza.
 
+![pre-commit corriendo ruff sobre el módulo](imagenes/dia-27-precommit.jpg)
+
 ---
 
 ## Conceptos de Odoo

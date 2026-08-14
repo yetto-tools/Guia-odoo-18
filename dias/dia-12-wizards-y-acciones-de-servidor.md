@@ -6,6 +6,8 @@
 ## Objetivo del día
 Crear un wizard para confirmar la venta de una propiedad con un precio final, y entender qué lo hace distinto de un modelo normal.
 
+![El wizard Confirmar venta](imagenes/dia-12-wizard-venta.jpg)
+
 ---
 
 ## Conceptos de Odoo

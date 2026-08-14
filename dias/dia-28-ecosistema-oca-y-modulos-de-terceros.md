@@ -6,6 +6,8 @@
 ## Objetivo del día
 Leer código de producción real, no solo tutoriales, y saber dónde buscar antes de reinventar algo.
 
+![Clonando un repositorio real de la OCA](imagenes/dia-28-oca-clone.jpg)
+
 ---
 
 ## Conceptos de Odoo

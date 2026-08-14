@@ -6,6 +6,8 @@
 ## Objetivo del día
 Entender qué pieza hace qué en Odoo, y tener una instancia propia corriendo.
 
+![Contenedores de Docker corriendo (Odoo 18 + PostgreSQL 15)](imagenes/dia-01-docker.jpg)
+
 ---
 
 ## Conceptos de Odoo

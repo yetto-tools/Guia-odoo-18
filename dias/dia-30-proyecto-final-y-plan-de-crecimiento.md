@@ -6,6 +6,8 @@
 ## Objetivo del día
 Demo de punta a punta del módulo completo, validar que está listo para mostrarse, y trazar el plan de qué seguir aprendiendo.
 
+![La propiedad en estado Vendida, flujo completo](imagenes/dia-30-propiedad-vendida.jpg)
+
 ---
 
 ## Conceptos de Odoo (síntesis de las 4 semanas)

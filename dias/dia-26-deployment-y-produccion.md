@@ -6,6 +6,8 @@
 ## Objetivo del día
 Armar un stack de producción con Nginx delante de Odoo, y entender por qué un entorno de producción no es "el mismo Docker Compose del día 1, pero con más RAM".
 
+![El stack de producción real: Odoo + PostgreSQL + Nginx](imagenes/dia-26-produccion.jpg)
+
 ---
 
 ## Conceptos de Odoo
