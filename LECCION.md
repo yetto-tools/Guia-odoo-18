@@ -6,6 +6,8 @@
 ## Objetivo del día
 Crear el modelo `inmueble.property` con sus campos básicos y entender cómo el ORM lo traduce a SQL.
 
+![Creando un registro desde odoo shell](imagenes/dia-03-shell-create.jpg)
+
 ---
 
 ## Conceptos de Odoo
