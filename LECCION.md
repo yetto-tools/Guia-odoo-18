@@ -6,6 +6,8 @@
 ## Objetivo del día
 Escribir métodos propios usando las herramientas del ORM en vez de loops manuales, y entender el costo real de cada una.
 
+![get_available_properties() desde odoo shell](imagenes/dia-10-shell-metodo.jpg)
+
 ---
 
 ## Conceptos de Odoo
