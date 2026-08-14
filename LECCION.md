@@ -6,6 +6,8 @@
 ## Objetivo del día
 Agregar una validación de servidor real y una sugerencia automática en el formulario, y entender por qué no son intercambiables.
 
+![El formulario tras tildar Garden (onchange en acción)](imagenes/dia-09-onchange-garden.jpg)
+
 ---
 
 ## Conceptos de Odoo
