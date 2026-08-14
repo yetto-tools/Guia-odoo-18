@@ -6,6 +6,8 @@
 ## Objetivo del día
 Crear un widget de campo propio: un badge de color según el estado.
 
+![El widget state_badge mostrando etiquetas traducidas](imagenes/dia-18-state-badge.jpg)
+
 ---
 
 ## Conceptos de Odoo
@@ -56,6 +58,13 @@ export class StateBadge extends Component {
     get badgeClass() {
         return `badge text-bg-${COLORS[this.props.record.data[this.props.name]] || "secondary"}`;
     }
+
+    get label() {
+        const value = this.props.record.data[this.props.name];
+        const selection = this.props.record.fields[this.props.name].selection || [];
+        const match = selection.find(([selectionValue]) => selectionValue === value);
+        return match ? match[1] : value;
+    }
 }
 
 registry.category("fields").add("state_badge", { component: StateBadge });
@@ -65,10 +74,12 @@ registry.category("fields").add("state_badge", { component: StateBadge });
 ```xml
 <templates xml:space="preserve">
     <t t-name="gestion_inmobiliaria.StateBadge">
-        <span t-att-class="badgeClass" t-esc="props.record.data[props.name]"/>
+        <span t-att-class="badgeClass" t-esc="label"/>
     </t>
 </templates>
 ```
+
+> `props.record.data[props.name]` te da el **valor interno** del campo (`"new"`, `"offer_received"`...), no la etiqueta que ve el usuario. Para mostrar la etiqueta traducida, el widget busca ese valor dentro de la metadata `selection` que Odoo ya te da en `record.fields[name].selection` (una lista de pares `[valor, etiqueta]`) — así el badge muestra "Nueva" en vez de `new`.
 
 Manifest:
 ```python
