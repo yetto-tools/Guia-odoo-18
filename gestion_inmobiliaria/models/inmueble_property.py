@@ -76,6 +76,12 @@ class InmuebleProperty(models.Model):
             key=lambda r: r.expected_price
         )
 
+    def get_available_properties_data(self):
+        return [
+            {"id": p.id, "name": p.name, "expected_price": p.expected_price}
+            for p in self.get_available_properties()
+        ]
+
     def action_cancel(self):
         for record in self:
             if record.state == "sold":

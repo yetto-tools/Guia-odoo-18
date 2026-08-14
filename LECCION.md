@@ -6,6 +6,8 @@
 ## Objetivo del día
 Dejar el proyecto presentable como portafolio público, y mapear qué de todo lo aprendido corresponde a una certificación técnica.
 
+![El repositorio del curso publicado en GitHub](imagenes/dia-29-github.jpg)
+
 ---
 
 ## Conceptos de Odoo
