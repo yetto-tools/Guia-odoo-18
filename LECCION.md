@@ -6,6 +6,8 @@
 ## Objetivo del día
 Agregar chatter a la propiedad, notificar automáticamente al aceptar una oferta, y programar una tarea recurrente.
 
+![Chatter con mensaje y actividad planificada](imagenes/dia-13-chatter-actividad.jpg)
+
 ---
 
 ## Conceptos de Odoo
