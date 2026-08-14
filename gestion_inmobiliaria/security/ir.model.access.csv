@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inmueble_property_agent,inmueble.property.agent,model_inmueble_property,group_inmueble_agent,1,1,1,0
+access_inmueble_property_manager,inmueble.property.manager,model_inmueble_property,group_inmueble_manager,1,1,1,1
+access_inmueble_property_type_agent,inmueble.property.type.agent,model_inmueble_property_type,group_inmueble_agent,1,0,0,0
+access_inmueble_property_type_manager,inmueble.property.type.manager,model_inmueble_property_type,group_inmueble_manager,1,1,1,1
+access_inmueble_property_tag_agent,inmueble.property.tag.agent,model_inmueble_property_tag,group_inmueble_agent,1,0,0,0
+access_inmueble_property_tag_manager,inmueble.property.tag.manager,model_inmueble_property_tag,group_inmueble_manager,1,1,1,1
+access_inmueble_property_offer_agent,inmueble.property.offer.agent,model_inmueble_property_offer,group_inmueble_agent,1,1,1,0
+access_inmueble_property_offer_manager,inmueble.property.offer.manager,model_inmueble_property_offer,group_inmueble_manager,1,1,1,1
