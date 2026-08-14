@@ -15,11 +15,14 @@ QWeb es el motor de templates de Odoo (directivas `t-*` sobre XML). Se usa para 
 
 ### El pipeline completo de un reporte PDF
 1. Vos escribís una plantilla QWeb con HTML semántico.
-2. Odoo la renderiza a HTML real, inyectando tus datos (`doc` es el registro actual).
+2. Odoo la renderiza a HTML real, inyectando tus datos.
 3. Si `report_type="qweb-pdf"`, Odoo pasa ese HTML por **wkhtmltopdf** (un binario externo que convierte HTML/CSS a PDF) para generar el archivo final.
 4. Si en cambio pedís ver el reporte como HTML (`qweb-html` o la previsualización en el navegador), se salta el paso de wkhtmltopdf.
 
 Esto explica por qué a veces un reporte se ve distinto en la previsualización HTML del navegador que en el PDF final — CSS avanzado o JS no siempre se comporta igual dentro de wkhtmltopdf.
+
+### `docs`, no `doc`: por qué el `t-foreach` no es opcional
+Cuando imprimís un reporte, Odoo puede recibir **varios** registros seleccionados a la vez (por ejemplo, tildar 5 propiedades en la lista y mandarlas todas a imprimir). Por eso el contexto que Odoo le pasa a tu plantilla es siempre `docs` — un recordset, en plural — nunca un `doc` singular ya resuelto. Sos vos quien decide cómo recorrerlo: `<t t-foreach="docs" t-as="doc">` itera una ficha completa por cada registro seleccionado, y recién ahí `doc` existe dentro de ese bloque. Si usás `doc.campo` sin haber abierto ese `t-foreach` primero, Odoo lanza `KeyError: 'doc'` — es el error más común al escribir el primer reporte.
 
 ### `web.html_container` + `web.external_layout`: por qué heredás de esto
 No armás un reporte desde cero. `web.html_container` prepara el documento HTML base (head, viewport, etc.). `web.external_layout` agrega automáticamente el header/footer con el logo de la compañía, dirección, y demás datos configurados en `Ajustes → Empresas` — sin que vos tengas que codificarlo. Envolver tu contenido en ambos es lo que hace que tu reporte se vea "profesional" sin esfuerzo extra, y que cambie solo si la compañía cambia su logo.
@@ -41,12 +44,14 @@ Cuando un `ir.actions.report` tiene `binding_model_id` apuntando a tu modelo y `
 <odoo>
     <template id="report_inmueble_property_document">
         <t t-call="web.html_container">
-            <t t-call="web.external_layout">
-                <div class="page">
-                    <h2><t t-out="doc.name"/></h2>
-                    <p>Precio esperado: <t t-out="doc.expected_price"/></p>
-                    <p>Superficie total: <t t-out="doc.total_area"/> m²</p>
-                </div>
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2><t t-out="doc.name"/></h2>
+                        <p>Precio esperado: <t t-out="doc.expected_price"/></p>
+                        <p>Superficie total: <t t-out="doc.total_area"/> m²</p>
+                    </div>
+                </t>
             </t>
         </t>
     </template>
@@ -99,6 +104,7 @@ Iterá `doc.offer_ids` con `t-foreach` dentro del reporte para listar todas las 
 3. ¿Por qué `t-out` es preferible a `t-esc` en código nuevo, y qué hace distinto `t-raw`?
 4. ¿Qué logran juntos `binding_model_id` y `binding_type="report"` en un `ir.actions.report`?
 5. Si un reporte se ve distinto en la previsualización HTML que en el PDF final, ¿a qué paso del pipeline podría deberse la diferencia?
+6. Si tu plantilla usa `doc.name` pero nunca abriste un `<t t-foreach="docs" t-as="doc">`, ¿qué error concreto vas a ver, y por qué?
 
 <details>
 <summary>Ver respuestas</summary>
@@ -108,11 +114,17 @@ Iterá `doc.offer_ids` con `t-foreach` dentro del reporte para listar todas las 
 3. `t-out` escapa automáticamente el HTML del valor (previene que caracteres especiales rompan el layout o permitan inyección); `t-esc` es el nombre anterior con el mismo propósito, mantenido por compatibilidad; `t-raw` inserta el valor sin escapar, lo cual es riesgoso si el dato viene de input de usuario.
 4. Que el reporte aparezca automáticamente en el menú desplegable "Imprimir" del formulario de ese modelo, sin necesidad de programar un botón manual para invocarlo.
 5. Al paso de conversión por `wkhtmltopdf`: ese binario no siempre soporta CSS avanzado o JavaScript de la misma forma que un navegador moderno, por lo que el render final puede diferir de la previsualización HTML.
+6. `KeyError: 'doc'` — porque Odoo solo te entrega `docs` (el recordset completo, en plural); `doc` no existe como variable hasta que vos mismo lo definís recorriendo `docs` con un `t-foreach`.
 
 </details>
+
+## Captura
+
+![Reporte PDF de la ficha de propiedad](imagenes/dia-15-reporte-pdf.jpg)
 
 ## Checklist de cierre
 - [ ] Entiendo qué aporta `web.external_layout` y lo confirmé sacándolo temporalmente.
 - [ ] Sé la diferencia entre `qweb-pdf` y `qweb-html` como `report_type`.
 - [ ] Sé por qué `t-out` es preferible a `t-esc`/`t-raw` en Odoo 18.
+- [ ] Entiendo por qué el `t-foreach="docs" t-as="doc"` no es opcional.
 - [ ] Agregué la tabla de ofertas al reporte.
